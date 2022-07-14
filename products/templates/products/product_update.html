@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Редактировать товар "{{ post.title }}"
+{% endblock %}
+
+{% block content %}
+
+    <form class="" action="{{ product.get_update_url }}" method="post">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div class="form-group" style="margin-bottom: 20px">
+                {% if field.errors %}
+                    <div class="alert alert-danger">
+                        {{ field.errors }}
+                    </div>
+
+                {% endif %}
+                {{ field.label }}
+                {{ field }}
+            </div>
+
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary"> Изменить товар</button>
+    </form>
+
+{% endblock %}

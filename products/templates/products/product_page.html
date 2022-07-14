@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Товар "{{ product.name}}"
+{% endblock %}
+
+{% block content %}
+  <div class="card" style="width: 18rem;">
+    <img src="https://ros-test.info/images/article/6154431fa6df2.jpg" class="card-img-top" alt="хуй">
+    <div class="card-body">
+      <h5 class="card-title">{{ product.name }}</h5>
+      <p class="card-text">{{ product.description }}</p>
+      <p class="card-text">{{ product.price }} Хрiвен</p>
+      {% csrf_token %}
+      <button onclick="request()" class="btn btn-dark">В корзину</button>
+      <script>
+        function request(){fetch('/cart/add/{{ product.article }}')}
+      </script>
+    </div>
+  </div>
+{% endblock %}
