@@ -8,10 +8,10 @@ from django.db import models
 
 
 class ProductUserСhoice(models.Model):
-    product_id = models.SlugField(max_length=50, unique=True)
+    product_article = models.SlugField(max_length=50, null=True)
     user_id = models.IntegerField(default=1)
     order_id = models.IntegerField(default=1)
-    amount = models.IntegerField()
+    count = models.IntegerField(null=True)
     is_active = models.BooleanField(default=True)
 
     class Meta:
