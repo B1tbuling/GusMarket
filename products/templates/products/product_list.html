@@ -8,7 +8,7 @@
 {% block content %}
     <table class="table">
         <thead>
-        <tr>
+        <tr style="text-align: center">
             <th scope="col">Наименование</th>
             <th scope="col">Цена</th>
             <th scope="col">Осталось на складе</th>
@@ -18,9 +18,9 @@
         <tbody>
 
         {% for product in products %}
-        <tr>
-            <td>{{ product.name }}</td>
-            <td>{{ product.price }}</td>
+        <tr style="text-align: center">
+            <td>{{ product.name }} </td>
+            <td>{{ product.price }} ₽</td>
             <td>{{ product.amount}}</td>
             <td><a type="submit" class="btn btn-primary" href="{{ product.get_absolute_url }}">Подробнее</a></td>
         </tr>

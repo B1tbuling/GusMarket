@@ -11,7 +11,6 @@ class CreateProduct(View):
 
     def get(self, request):
         form = self.model_form()
-        print(form)
         return render(request, self.template, context={'form': form})
 
     def post(self, request):

@@ -5,9 +5,10 @@
 {% endblock %}
 
 {% block content %}
-    <table class="table">
+    <table class="table" >
+        <button  class="btn btn-primary">Убрать все</button>
         <thead>
-        <tr>
+        <tr style="text-align: center">
             <th scope="col">Артикуль</th>
             <th scope="col">Наименование</th>
             <th scope="col">Цена</th>
@@ -18,14 +19,33 @@
         </thead>
         <tbody>
 
-        {% for cart in cart_all %}
-        <tr>
-            {% for i in cart %}
-                <td>{{ i }}</td>
-            {% endfor %}
+        {% for product,cart in list_cart %}
+        <tr style="text-align: center" class="shadow-sm p-3 mb-5 bg-body rounded">
+            <td>{{ product.article }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.amount}}</td>
+            <td><input type="number" class="form-control" value="1" style="width: 87px"></td>
+            <td>
+                {% csrf_token %}
+                <button  onclick="request1('{{ product.article }}')" class="btn btn-primary">X</button>
+            </td>
         </tr>
         {% endfor %}
-
+        <script>
+            async function request1(article) {
+                await fetch('/cart/delete/' + article);
+                location.reload()
+            }
+        </script>
         </tbody>
     </table>
+    {% csrf_token %}
+    <button  onclick="request1('{{ product.article }}')" class="btn btn-primary">Оформить заказа</button>
+    <script>
+        async function request1(article) {
+            await fetch('/cart/delete/' + article);
+            location.reload()
+        }
+    </script>
 {% endblock %}

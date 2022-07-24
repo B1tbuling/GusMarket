@@ -20,10 +20,8 @@ class Product(models.Model):
     def get_update_url(self):
         return reverse('product_update_url', kwargs={'article': self.article})
 
-
     def get_delete_url(self):
         return reverse('product_delete_url', kwargs={'article': self.article})
-
 
     def __str__(self):
         return self.article
